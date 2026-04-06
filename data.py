@@ -21,15 +21,14 @@ def get_data(interaction_path, item_path):
         item_visual_features : (num_items+1, visual_dim) - 0번은 패딩용 제로벡터
     """
     # ── Interaction 로드 ──
-    with open('bigMatrix.pkl', 'rb') as f:
-        df = pickle.load(f)
+    df = pd.read_parquet('interaction.parquet')
 
     df['user_id'] = df['user_id'] + 1
-    df['video_id'] = df['video_id'] + 1
+    df['item_id'] = df['item_id'] + 1
     df = df.sort_values(by=['user_id', 'timestamp'], kind='mergesort').reset_index(drop=True)
 
     usernum = df['user_id'].max()
-    itemnum = df['video_id'].max()
+    itemnum = df['item_id'].max()
 
     # ── Item features 로드 ──
     item_df = pd.read_parquet(item_path)
@@ -54,7 +53,7 @@ def get_data(interaction_path, item_path):
 
     # ── Leave-two-out split ──
     User = defaultdict(list)
-    for u, i in zip(df['user_id'], df['video_id']):
+    for u, i in zip(df['user_id'], df['item_id']):
        User[u].append(int(i))
 
     user_train, user_valid, user_test = {}, {}, {}
