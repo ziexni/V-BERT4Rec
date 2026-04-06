@@ -36,7 +36,7 @@ def get_data(interaction_path, item_path):
     
     # 이미지 벡터 추출 (video_feature)
     visual_features = []
-    visual_features.append(np.zeros(128))  # 0번 인덱스: PAD용 제로벡터
+    visual_features.append(np.zeros(2048))  # 0번 인덱스: PAD용 제로벡터
     
     for item_id in range(itemnum):
         if item_id < len(item_df):
@@ -46,9 +46,9 @@ def get_data(interaction_path, item_path):
             else:
                 visual_features.append(np.array(feat))
         else:
-            visual_features.append(np.zeros(128))
+            visual_features.append(np.zeros(2048))
     
-    item_visual_features = np.stack(visual_features)  # (itemnum+1, 128)
+    item_visual_features = np.stack(visual_features)  # (itemnum+1, 2048)
     
     print(f"✓ Visual features loaded: {item_visual_features.shape}")
 
