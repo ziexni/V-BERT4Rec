@@ -113,7 +113,7 @@ class DataModule(pl.LightningDataModule):
         parser.add_argument('--pin_memory',      type=bool,  default=True)
         parser.add_argument('--num_workers',     type=int,   default=4)
         parser.add_argument('--item_size',       type=int,   default=0)
-        parser.add_argument('--visual_dim',      type=int,   default=128)  # ✅ 이미지 차원
+        parser.add_argument('--visual_dim',      type=int,   default=2048)  # ✅ 이미지 차원
         parser.add_argument('--interaction_path', type=str,  default=INTERACTION_PATH)
         parser.add_argument('--item_path',       type=str,  default=ITEM_PATH)  # ✅ 아이템 경로
 
