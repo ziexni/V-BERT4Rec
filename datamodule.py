@@ -9,7 +9,7 @@ from typing import Optional
 from data import MicroVideoDataset, get_data
 
 # 기본 데이터 경로
-INTERACTION_PATH = 'bigMatrix.pkl'
+INTERACTION_PATH = 'interaction.parquet'
 ITEM_PATH = 'item_used.parquet'
 
 
